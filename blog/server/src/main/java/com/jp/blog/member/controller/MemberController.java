@@ -32,7 +32,7 @@ public class MemberController {
             jpaMessage = "Fail";
         }
 
-        return new ResponseForm<Optional<Member>>(jpaFlag, jpaMessage, mem);
+        return new ResponseForm<>(jpaFlag, jpaMessage, mem);
     }
 
     //update
@@ -51,7 +51,7 @@ public class MemberController {
             jpaMessage = "Fail";
         }
 
-        return new ResponseForm<Optional<Member>>(jpaFlag, jpaMessage, mem);
+        return new ResponseForm<>(jpaFlag, jpaMessage, mem);
     }
 
     //delete
@@ -70,7 +70,7 @@ public class MemberController {
             jpaMessage = "Fail";
         }
 
-        return new ResponseForm<Optional<Member>> (jpaFlag, jpaMessage, mem);
+        return new ResponseForm<> (jpaFlag, jpaMessage, mem);
     }
 
     //select
@@ -89,6 +89,6 @@ public class MemberController {
             jpaMessage = "Fail";
         }
 
-       return new ResponseForm<Optional<Member>> (jpaFlag, jpaMessage, mem);
+       return new ResponseForm<> (jpaFlag, jpaMessage, mem);
     }
 }

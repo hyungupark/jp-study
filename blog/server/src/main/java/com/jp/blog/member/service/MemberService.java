@@ -25,9 +25,9 @@ public class MemberService {
         member.setMemberName(memberName);
         member.setMemberPwd(memberPwd);
         member.setCreatedAt(LocalDateTime.now());
-        memberRepository.save(member);
+        Member toMember = memberRepository.save(member);
 
-        return Optional.of(member);
+        return Optional.of(toMember);
     }
 
     public Optional<Member>  deletedMember (

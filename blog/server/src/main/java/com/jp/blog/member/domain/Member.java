@@ -7,9 +7,9 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @Table(name="Member")
 public class Member {
 
@@ -18,13 +18,17 @@ public class Member {
     @Column(name="member_id")
     private UUID memberId;
 
-    @Column(nullable = false, name="member_name", length=255)
+    @Column(name="member_name", nullable = false)
     private String memberName;
 
-    @Column(nullable = false, name="member_pwd", length=255)
+    @Column(name="member_pwd", nullable = false)
     private String memberPwd;
 
-    @Column(nullable = false, name="created_at", length=255)
+    @Column(name="created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    @PrePersist
+    public void prePersist() {
+        this.createdAt = LocalDateTime.now();
+    }
 }
