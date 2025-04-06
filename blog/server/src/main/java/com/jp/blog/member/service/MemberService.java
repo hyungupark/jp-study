@@ -49,10 +49,12 @@ public class MemberService {
 
     public Optional<Member> updateMember (
             UUID memberId,
+            String memberName,
             String memberPwd
     ) {
         Member member = new Member();
         member.setMemberId(memberId);
+        member.setMemberName(memberName);
         member.setMemberPwd(memberPwd);
 
         memberRepository.save(member);

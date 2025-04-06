@@ -42,7 +42,7 @@ public class MemberController {
         boolean jpaFlag = false;
         String jpaMessage = "";
 
-        Optional<Member> mem = memberService.updateMember(member.getMemberId(), member.getMemberPwd());
+        Optional<Member> mem = memberService.updateMember(member.getMemberId(), member.getMemberName(), member.getMemberPwd());
 
         if(mem.isPresent()) {
             jpaFlag = true;
