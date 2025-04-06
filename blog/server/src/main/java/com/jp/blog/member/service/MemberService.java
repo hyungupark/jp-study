@@ -1,6 +1,6 @@
 package com.jp.blog.member.service;
 
-import com.jp.blog.member.dto.MemberDTO;
+import com.jp.blog.member.domain.Member;
 import com.jp.blog.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,19 +18,19 @@ public class MemberService {
             String memberName,
             String memberPwd) {
 
-        MemberDTO mdto = new MemberDTO();
-        mdto.setMemberName(memberName);
-        mdto.setMemberPwd(memberPwd);
-        mdto.setCreateAt(LocalDateTime.now());
-        memberRepository.save(mdto);
+        Member member = new Member();
+        member.setMemberName(memberName);
+        member.setMemberPwd(memberPwd);
+        member.setCreatedAt(LocalDateTime.now());
+        memberRepository.save(member);
     }
 
     public void deletedMember (
             UUID memberId
     ) {
-        MemberDTO mdto = new MemberDTO();
-        mdto.setMemberId(memberId);
-        memberRepository.delete(mdto);
+        Member member = new Member();
+        member.setMemberId(memberId);
+        memberRepository.delete(member);
     }
 
     public void readMember (
@@ -44,11 +44,11 @@ public class MemberService {
             UUID memberId,
             String memberPwd
     ) {
-        MemberDTO mdto = new MemberDTO();
-        mdto.setMemberId(memberId);
-        mdto.setMemberPwd(memberPwd);
+        Member member = new Member();
+        member.setMemberId(memberId);
+        member.setMemberPwd(memberPwd);
 
-        memberRepository.save(mdto);
+        memberRepository.save(member);
 
     }
 }
