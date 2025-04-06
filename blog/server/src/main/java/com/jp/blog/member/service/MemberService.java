@@ -1,11 +1,14 @@
 package com.jp.blog.member.service;
 
+import com.jp.blog.common.ResponseForm;
 import com.jp.blog.member.domain.Member;
 import com.jp.blog.member.repository.MemberRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -14,7 +17,7 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public void createdMember (
+    public Optional<Member> createdMember (
             String memberName,
             String memberPwd) {
 
@@ -23,24 +26,28 @@ public class MemberService {
         member.setMemberPwd(memberPwd);
         member.setCreatedAt(LocalDateTime.now());
         memberRepository.save(member);
+
+        return Optional.of(member);
     }
 
-    public void deletedMember (
+    public Optional<Member>  deletedMember (
             UUID memberId
     ) {
         Member member = new Member();
         member.setMemberId(memberId);
         memberRepository.delete(member);
+
+        return Optional.of(member);
     }
 
-    public void readMember (
+    public Optional<Member> readMember (
             String memberName,
             String memberPwd
     ) {
-        memberRepository.findByMemberNameAndMemberPwd(memberName, memberPwd);
+        return memberRepository.findByMemberNameAndMemberPwd(memberName, memberPwd);
     }
 
-    public void updateMember (
+    public Optional<Member> updateMember (
             UUID memberId,
             String memberPwd
     ) {
@@ -50,5 +57,6 @@ public class MemberService {
 
         memberRepository.save(member);
 
+        return Optional.of(member);
     }
 }
