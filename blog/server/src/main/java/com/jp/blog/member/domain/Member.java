@@ -17,10 +17,13 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name="member_id")
     private UUID memberId;
+
     @Column(nullable = false, name="member_name", length=255)
     private String memberName;
+
     @Column(nullable = false, name="member_pwd", length=255)
     private String memberPwd;
+
     @Column(nullable = false, name="created_at", length=255)
     private LocalDateTime createdAt;
 

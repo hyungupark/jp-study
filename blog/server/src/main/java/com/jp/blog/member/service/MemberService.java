@@ -37,7 +37,7 @@ public class MemberService {
             String memberName,
             String memberPwd
     ) {
-        memberRepository.findByUsernameAndPassword(memberName, memberPwd);
+        memberRepository.findByMemberNameAndMemberPwd(memberName, memberPwd);
     }
 
     public void updateMember (
