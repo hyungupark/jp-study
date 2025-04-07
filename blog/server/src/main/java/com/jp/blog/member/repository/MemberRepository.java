@@ -7,5 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface MemberRepository extends JpaRepository<Member, UUID>{
-    Optional<Member> findByMemberNameAndMemberPwd(String memberName, String memberPwd);
+    Optional<Member> findByUsernameAndPassword(String username, String password);
 }

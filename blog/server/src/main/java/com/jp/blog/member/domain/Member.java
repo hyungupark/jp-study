@@ -10,21 +10,18 @@ import java.util.UUID;
 @Entity
 @Getter
 @Setter
-@Table(name="Member")
 public class Member {
-
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(name="member_id")
-    private UUID memberId;
+    private UUID id;
 
-    @Column(name="member_name", nullable = false)
-    private String memberName;
+    @Column(name = "username", nullable = false)
+    private String username;
 
-    @Column(name="member_pwd", nullable = false)
-    private String memberPwd;
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    @Column(name="created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

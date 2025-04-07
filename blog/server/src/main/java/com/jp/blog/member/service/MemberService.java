@@ -17,45 +17,37 @@ public class MemberService {
 
     private final MemberRepository memberRepository;
 
-    public Optional<Member> createdMember (
-            String memberName,
-            String memberPwd) {
-
+    public Optional<Member> createdMember(String username, String password) {
         Member member = new Member();
-        member.setMemberName(memberName);
-        member.setMemberPwd(memberPwd);
+        member.setUsername(username);
+        member.setPassword(password);
         member.setCreatedAt(LocalDateTime.now());
         Member toMember = memberRepository.save(member);
 
         return Optional.of(toMember);
     }
 
-    public Optional<Member>  deletedMember (
-            UUID memberId
-    ) {
+    public Optional<Member> deletedMember(UUID id) {
         Member member = new Member();
-        member.setMemberId(memberId);
+        member.setId(id);
         memberRepository.delete(member);
 
         return Optional.of(member);
     }
 
-    public Optional<Member> readMember (
-            String memberName,
-            String memberPwd
-    ) {
-        return memberRepository.findByMemberNameAndMemberPwd(memberName, memberPwd);
+    public Optional<Member> readMemberById(UUID id) {
+        return memberRepository.findById(id);
     }
 
-    public Optional<Member> updateMember (
-            UUID memberId,
-            String memberName,
-            String memberPwd
-    ) {
+    public Optional<Member> readMember(String username, String password) {
+        return memberRepository.findByUsernameAndPassword(username, password);
+    }
+
+    public Optional<Member> updateMember(UUID id, String username, String password) {
         Member member = new Member();
-        member.setMemberId(memberId);
-        member.setMemberName(memberName);
-        member.setMemberPwd(memberPwd);
+        member.setId(id);
+        member.setUsername(username);
+        member.setPassword(password);
 
         memberRepository.save(member);
 
