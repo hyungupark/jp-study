@@ -5,16 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Home from "./Home";
+import Nav from "./Nav";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
         <BrowserRouter>
-            <Routes>
-                <Route path={"/"} element={<App/>}/>
-                <Route path={"/home"} element={<Home/>}/>
-            </Routes>
+            <App/>
         </BrowserRouter>
     </React.StrictMode>
 );
