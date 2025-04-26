@@ -33,7 +33,7 @@ public class MemberController {
     }
 
     /// Read
-    @PostMapping("/login")
+    @GetMapping("/login")
     public ResponseForm<Optional<Member>> login(@RequestBody Member member) {
         boolean jpaFlag = false;
         String jpaMessage = "";
@@ -51,7 +51,7 @@ public class MemberController {
     }
 
     /// Update
-    @PutMapping()
+    @PutMapping("/updateMember")
     public ResponseForm<Optional<Member>> updateMember(@RequestBody Member member) {
         boolean jpaFlag = false;
         String jpaMessage = "";
@@ -69,7 +69,7 @@ public class MemberController {
     }
 
     /// Delete
-    @DeleteMapping()
+    @DeleteMapping("/deleteMember")
     public ResponseForm<Optional<Member>> deleteMember(@RequestBody Member member) {
         boolean jpaFlag = false;
         String jpaMessage = "";
