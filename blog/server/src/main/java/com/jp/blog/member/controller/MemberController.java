@@ -33,7 +33,7 @@ public class MemberController {
     }
 
     /// Read
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseForm<Optional<Member>> login(@RequestBody Member member) {
         boolean jpaFlag = false;
         String jpaMessage = "";

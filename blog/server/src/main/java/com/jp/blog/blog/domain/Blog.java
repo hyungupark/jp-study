@@ -3,7 +3,6 @@ package com.jp.blog.blog.domain;
 import com.jp.blog.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,7 +21,7 @@ public class Blog {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5000)
     private String content;
 
     @Column(name = "created_at", updatable = false)

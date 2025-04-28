@@ -44,11 +44,7 @@ public class BlogController {
     @GetMapping("/{blog_id}")
     public ResponseEntity<ResponseForm<Optional<Blog>>> getBlogById(@PathVariable(name = "blog_id") UUID blogId_) {
         Optional<Blog> blog = blogService.getBlogById(blogId_);
-        if (blog.isPresent()) {
-            return ResponseEntity.ok(new ResponseForm<>(true, "", blog));
-        } else {
-            return ResponseEntity.ok(new ResponseForm<>(false, "Blog not found", null));
-        }
+        return ResponseEntity.ok(new ResponseForm<>(true, "", blog));
     }
 
     /// Update
