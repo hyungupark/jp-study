@@ -6,7 +6,6 @@ function CreateBlog(props) {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-
     async function create() {
         const res = await fetch(`http://localhost:8080/blogs/${props.userId}`, {
             method: "POST",

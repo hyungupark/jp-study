@@ -51,6 +51,12 @@ public class BlogService {
     }
 
     /// Update
+    public Optional<BlogDto> updateBlog(UUID blogId, Blog newBlog) {
+        Blog blog = blogRepository.findById(blogId).orElseThrow();
+        blog.setTitle(newBlog.getTitle());
+        blog.setContent(newBlog.getContent());
+        return Optional.of(BlogMapper.toDto(blogRepository.save(blog)));
+    }
 
     /// Delete
     public void deleteBlogById(UUID blogId) {

@@ -21,9 +21,6 @@ public class BlogController {
     /// Create
     @PostMapping("/{user_id}")
     public ResponseEntity<ResponseForm<Optional<BlogDto>>> createBlog(@PathVariable(name = "user_id") UUID userId, @RequestBody Blog blog) {
-        System.out.println(" ++++++++++++ ");
-        System.out.println(blog);
-        System.out.println(" ------------ ");
         Optional<BlogDto> blogDto = blogService.createBlog(userId, blog);
         if (blogDto.isPresent()) {
             return ResponseEntity.ok(new ResponseForm<>(true, "Blog " + blogDto.get().getTitle() + " created", blogDto));
@@ -49,6 +46,15 @@ public class BlogController {
     }
 
     /// Update
+    @PutMapping("/{blog_id}")
+    public ResponseEntity<ResponseForm<Optional<BlogDto>>> updateBlog(@PathVariable(name = "blog_id") UUID blogId, @RequestBody Blog blog) {
+        return ResponseEntity.ok(new ResponseForm<>(true, "", blogService.updateBlog(blogId, blog)));
+    }
 
     /// Delete
+    @DeleteMapping("/{blog_id}")
+    public ResponseEntity<ResponseForm<Void>> deleteBlog(@PathVariable(name = "blog_id") UUID blogId) {
+        blogService.deleteBlogById(blogId);
+        return ResponseEntity.ok(new ResponseForm<>(true, "", null));
+    }
 }
