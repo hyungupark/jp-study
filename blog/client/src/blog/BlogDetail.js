@@ -8,18 +8,16 @@ function BlogDetail(props) {
         id: "",
         title: "",
         content: "",
-        author: {
-            userId: "",
-            username: "",
-        },
+        authorId: "",
+        authorName: "",
     });
 
     useEffect(() => {
         fetchData(blogId);
     }, [blogId]);
 
-    async function fetchData(_blogId) {
-        const res = await fetch(`http://localhost:8080/blogs/${_blogId}`);
+    async function fetchData(blogId_) {
+        const res = await fetch(`http://localhost:8080/blogs/${blogId_}`);
         const json = await res.json();
         setBlog(json.data)
         console.log(json.data);
@@ -33,7 +31,7 @@ function BlogDetail(props) {
             alignItems: "center",
         }}>
             <div style={{
-                width: "100%",
+                width: "50%",
                 padding: "20px"
             }}>
                 <h1 style={{
@@ -45,7 +43,7 @@ function BlogDetail(props) {
                     width: "100%",
                     textAlign: "right",
                 }}>
-                    by {blog.author.username}
+                    by {blog.authorName}
                 </div>
                 <div style={{
                     paddingTop: "50px",

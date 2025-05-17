@@ -36,12 +36,26 @@ function Nav(props) {
                     </div>
                 </div>
                 <div style={{
-                    width: "100px",
+                    width: "200px",
                     cursor: "pointer",
                 }}>
                     {props.userId ?
-                        <div onClick={props.signOut}>
-                            Sign out
+                        <div style={{
+                            display: "flex",
+                            gap: "30px",
+                        }}>
+                            <Link
+                                to={"/create"}
+                                style={{
+                                    textDecoration: "none",
+                                    color: "black",
+                                }}
+                            >
+                                Create
+                            </Link>
+                            <div onClick={props.signOut}>
+                                Sign out
+                            </div>
                         </div>
                         :
                         <Link to={"/signin"} className={"custom-link"}>

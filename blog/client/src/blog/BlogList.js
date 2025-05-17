@@ -45,7 +45,7 @@ function BlogList() {
                                 justifyContent: "space-between",
                             }}>
                                 <div>{blog.title}</div>
-                                <div>{blog.author.username}</div>
+                                <div>{blog.authorName}</div>
                             </div>
                             <div style={{
                                 paddingTop: "20px",

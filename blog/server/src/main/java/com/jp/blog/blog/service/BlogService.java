@@ -1,10 +1,13 @@
 package com.jp.blog.blog.service;
 
 import com.jp.blog.blog.domain.Blog;
+import com.jp.blog.blog.domain.BlogDto;
+import com.jp.blog.blog.mapper.BlogMapper;
 import com.jp.blog.blog.repository.BlogRepository;
 import com.jp.blog.member.domain.Member;
 import com.jp.blog.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,12 +21,13 @@ public class BlogService {
     private final MemberService memberService;
 
     /// Create
-    public Optional<Blog> createBlog(UUID userId, Blog blog) {
+    public Optional<BlogDto> createBlog(UUID userId, Blog blog) {
         try {
             Optional<Member> member = memberService.readMemberById(userId);
             if (member.isPresent()) {
                 blog.setAuthor(member.get());
-                return Optional.of(blogRepository.save(blog));
+                Blog newBlog = blogRepository.save(blog);
+                return Optional.of(BlogMapper.toDto(newBlog));
             } else {
                 throw new Exception("Member not found");
             }
@@ -33,17 +37,17 @@ public class BlogService {
     }
 
     /// Read
-    public List<Blog> getBlogs() {
+    public List<BlogDto> getBlogs() {
         System.out.println("blogRepository.findAll");
-        return blogRepository.findAll();
+        return blogRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt")).stream().map(BlogMapper::toDto).toList();
     }
 
-    public List<Blog> getBlogsByUser(UUID userId) {
-        return blogRepository.findAll();
+    public List<BlogDto> getBlogsByUser(UUID userId) {
+        return blogRepository.findByAuthorIdOrderByCreatedAtDesc(userId).stream().map(BlogMapper::toDto).toList();
     }
 
-    public Optional<Blog> getBlogById(UUID blogId) {
-        return blogRepository.findById(blogId);
+    public Optional<BlogDto> getBlogById(UUID blogId) {
+        return blogRepository.findById(blogId).map(BlogMapper::toDto);
     }
 
     /// Update
