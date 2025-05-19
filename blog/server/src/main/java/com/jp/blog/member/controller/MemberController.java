@@ -50,6 +50,24 @@ public class MemberController {
         return new ResponseForm<>(jpaFlag, jpaMessage, mem);
     }
 
+    /// Read
+    @PostMapping("/findById")
+    public ResponseForm<Optional<Member>> getIdToUsername(@RequestBody Member member) {
+        boolean jpaFlag = false;
+        String jpaMessage = "";
+
+        Optional<Member> mem = memberService.findById(member.getId());
+
+        if (mem.isPresent()) {
+            jpaFlag = true;
+            jpaMessage = "Success";
+        } else {
+            jpaMessage = "Fail";
+        }
+
+        return new ResponseForm<>(jpaFlag, jpaMessage, mem);
+    }
+
     /// Update
     @PutMapping("/updateMember")
     public ResponseForm<Optional<Member>> updateMember(@RequestBody Member member) {

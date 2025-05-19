@@ -42,6 +42,9 @@ public class MemberService {
     public Optional<Member> readMember(String username, String password) {
         return memberRepository.findByUsernameAndPassword(username, password);
     }
+    public Optional<Member> findById(UUID id) {
+        return memberRepository.findById(id);
+    }
 
     public Optional<Member> updateMember(UUID id, String username, String password) {
         Member member = new Member();

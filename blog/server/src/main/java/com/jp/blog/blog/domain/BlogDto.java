@@ -15,5 +15,4 @@ public class BlogDto {
     private UUID authorId;
     private String authorName;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
 }
