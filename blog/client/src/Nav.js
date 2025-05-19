@@ -32,7 +32,7 @@ function Nav(props) {
                     }}>
                         <Link to={"/blogs"} className={"custom-link"}>Blogs</Link>
                         {props.userId &&
-                            <Link to={`/profile/${props.userId}`} className={"custom-link"}>My page</Link>}
+                            <Link to={"/MyPage"} className={"custom-link"}>My page</Link>}
                     </div>
                 </div>
                 <div style={{

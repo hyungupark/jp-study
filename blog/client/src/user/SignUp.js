@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [process, setProcess] = useState(0);
+
+  const navigate = useNavigate();
 
   const usernameChange = (event) => {
     setUsername(event.target.value);
@@ -19,7 +22,7 @@ function SignUp() {
 
   const singUpSubmit = (event) => {
     event.preventDefault();
-    setProcess(1);
+    processChange(1);
     const data = { username, password };
     fetch("http://localhost:8080/members", {
       method: "POST",
@@ -30,8 +33,12 @@ function SignUp() {
     })
       .then((response) => response.json())
       .then((data) => {
-        processChange(2);
         console.log("Success : " + data);
+        processChange(2);
+
+        setTimeout(() => {
+          navigate("/SignIn");
+        }, 3000);
       })
       .catch((error) => {
         console.log("Fail : " + error);
@@ -86,7 +93,7 @@ function SignUp() {
             <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
               <label style={{ width: "90px" }}>PassWord :</label>
               <input
-                type="text"
+                type="password"
                 placeholder="EX> 1234"
                 value={password}
                 onChange={passwordChange}

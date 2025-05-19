@@ -9,6 +9,7 @@ import SignUp from "./user/SignUp";
 import SignIn from "./user/SignIn";
 import CreateBlog from "./blog/CreateBlog";
 import UpdateBlog from "./blog/UpdateBlog";
+import MyPage from "./user/MyPage";
 
 function App() {
     const [userId, setUserId] = useState(window.sessionStorage.getItem("sessionId"));
@@ -34,6 +35,7 @@ function App() {
                 <Route path={"/blog"} element={<BlogDetail userId={userId}/>}/>
                 <Route path={"/home"} element={<Home/>}/>
                 <Route path={"/SignUp"} element={<SignUp/>}/>
+                <Route path={"/MyPage"} element={<MyPage/>}/>
                 <Route path={"/SignIn"} element={<SignIn signIn={signIn}/>}/>
                 <Route path={"/create"} element={<CreateBlog userId={userId}/>}/>
                 <Route path={"/update/:blogId"} element={<UpdateBlog userId={userId}/>}/>
