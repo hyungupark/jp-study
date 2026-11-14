@@ -3,6 +3,9 @@ spring:
     name: todo
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/todo
-    username: ty
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: jeongtaeyang
     password: 1234
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml

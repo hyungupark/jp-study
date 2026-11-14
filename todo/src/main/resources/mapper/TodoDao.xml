@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.jp.todo.dao.TodoDao">
+
+    <select id="selectTodoList" resultType="org.jp.todo.dao.vo.TodoVO">
+        SELECT
+            B.NAME,
+            A.TITLE,
+            A.CONTENT,
+            A.COMPLETED,
+            A.CREATED_AT as createdAt
+          FROM TODO A LEFT OUTER JOIN CATEGORY B
+        ON A.CATEGORY_ID = B.ID
+    </select>
+
+    <select id="selectTodoById" parameterType="int" resultType="org.jp.todo.dao.vo.TodoVO">
+        SELECTa
+            CATEGORY_name as categoryId,
+            TITLE,
+            CONTENT,
+            COMPLETED,
+            CREATED_AT as createdAt
+        FROM TODO
+        WHERE id = #{id}
+    </select>
+
+    <delete id="deleteTodoById" parameterType="int">
+        DELETE FROM TODO
+         WHERE id = #{id}
+    </delete>
+
+    <update id="updateTodoById" parameterType="int">
+        UPDATE TODO
+        SET completed = true
+        WHERE id = #{id}
+    </update>
+
+    <update id="updateTodoByIdCAT" parameterType="int">
+        UPDATE TODO
+        SET CATEGORY_ID = #{catnum}
+        WHERE id = #{id}
+    </update>
+
+    <insert id="inserteTodoById" parameterType="org.jp.todo.dto.TodoDTO">
+        INSERT INTO todo (title, content, CATEGORY_ID)
+        VALUES (#{title}, #{content}, #{categoryCode});
+    </insert>
+
+
+</mapper>
